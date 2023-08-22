@@ -32,12 +32,22 @@ class _TotalCostState extends State<TotalCost> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_left_rounded)),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.keyboard_arrow_left_rounded,
+                      size: 38,
+                    )),
                 Text(
                   widget.price,
                   style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black, letterSpacing: 1.5),
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_right_rounded)),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.keyboard_arrow_right_rounded,
+                      size: 38,
+                    )),
               ]),
             ),
           ],
