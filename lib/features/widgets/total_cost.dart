@@ -50,7 +50,7 @@ class _TotalCostState extends State<TotalCost> {
                     )),
               ]),
             ),
-            const Text('so\'m', style: const TextStyle(fontSize: 20, color: Colors.green))
+            const Text('so\'m', style: TextStyle(fontSize: 20, color: Colors.green))
           ],
         ));
   }
