@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamyon/features/budget/budget.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 
 import '../../widgets/radius_container.dart';
 import '../../widgets/total_cost.dart';
@@ -12,16 +13,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
-  void initState() {
-    price = priceFormat(price);
-    super.initState();
-  }
-
 // ? DATE
   DateTime selectedDate = DateTime.now();
   void date(context) {
-    showDatePicker(context: context, initialDate: selectedDate, firstDate: DateTime(2022), lastDate: DateTime(2025)).then((value) {
+    showMonthPicker(context: context, initialDate: selectedDate, firstDate: DateTime(2000), lastDate: DateTime.now()).then((value) {
       setState(() {
         if (selectedDate != value && value != null) {
           selectedDate = value;
@@ -30,21 +25,34 @@ class _HomeState extends State<Home> {
     });
   }
 
-// ? Price format
-  String price = '114895000';
-
-  String priceFormat(priceFormat) {
-    int pft = 0;
-    List pfl = priceFormat.toString().split('');
-    for (int i = priceFormat.toString().length; i > 1; i--) {
-      pft += 1;
-      if (pft == 3) {
-        pfl.insert(i - 1, ',');
-        pft = 0;
-      }
-    }
-    return pfl.join();
+  void incrementMonth() {
+    if (selectedDate.month == DateTime.now().month && selectedDate.year == DateTime.now().year) return;
+    setState(() {
+      selectedDate = DateTime(selectedDate.year, selectedDate.month + 1);
+    });
   }
+
+  void decrementMonth() {
+    setState(() {
+      selectedDate = DateTime(selectedDate.year, selectedDate.month - 1);
+    });
+  }
+
+// // ? Price format
+//   String price = '114895000';
+
+//   String priceFormat(priceFormat) {
+//     int pft = 0;
+//     List pfl = priceFormat.toString().split('');
+//     for (int i = priceFormat.toString().length; i > 1; i--) {
+//       pft += 1;
+//       if (pft == 3) {
+//         pfl.insert(i - 1, ',');
+//         pft = 0;
+//       }
+//     }
+//     return pfl.join();
+//   }
 
   // ? Slider Budget
   double currentValueBudget = 0;
@@ -60,7 +68,12 @@ class _HomeState extends State<Home> {
           actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
         ),
         body: Column(children: [
-          TotalCost(selectedDate: selectedDate, price: price, date: date),
+          TotalCost(
+            incrementMonth: incrementMonth,
+            decrementMonth: decrementMonth,
+            selectedDate: selectedDate,
+            date: date,
+          ),
           Expanded(
             flex: 3,
             child: RadiusContainer(

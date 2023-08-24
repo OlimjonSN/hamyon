@@ -16,7 +16,10 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  intl: ^0.18.1
+  intl: ^0.18.0
+  google_fonts: ^5.1.0
+  month_year_picker: ^0.3.0+1
+  month_picker_dialog: ^2.0.2
 
 
 dev_dependencies:
