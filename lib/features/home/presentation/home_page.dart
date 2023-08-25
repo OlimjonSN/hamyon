@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hamyon/features/budget/budget.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 
+import '../../widgets/body.dart';
+import '../../widgets/budget.dart';
 import '../../widgets/radius_container.dart';
 import '../../widgets/total_cost.dart';
 
@@ -74,25 +75,7 @@ class _HomeState extends State<Home> {
             selectedDate: selectedDate,
             date: date,
           ),
-          Expanded(
-            flex: 3,
-            child: RadiusContainer(
-              color: Colors.deepPurple[100],
-              child: Column(
-                children: [
-                  Budget(
-                    currentValueBudget: currentValueBudget,
-                  ),
-                  const Expanded(
-                    flex: 4,
-                    child: RadiusContainer(
-                      child: Center(child: Text('data')),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          Body(currentValueBudget: currentValueBudget),
         ]),
       ),
     );
